@@ -12,6 +12,27 @@
 - **Multi-GPU strategy:** independent training runs dispatched concurrently across both GPUs via `ThreadPoolExecutor(max_workers=N_GPUS)`. MARST main (3 seeds), anchor ablation (7 variants) and soft-LOCF decay sweep (3 variants) run two-at-a-time; per-thread RNG state and per-thread `torch.cuda.set_device` keep the runs independent. Trained nets are moved back to `cuda:0` before any downstream eval.
 - **Epoch budget:** `TRAIN_EPOCHS = 800` for main MARST and the 13 deep baselines, `ABLATION_EPOCHS = 400` for anchor ablation, decay sweep, and the curriculum-vs-fixed comparison.
 
+## Related work and positioning
+
+The strategy of combining classical statistical methods with neural networks — letting the classical component handle the structured part of the prediction and a neural network learn corrections — is a recognised paradigm with strong precedent. The M4 forecasting competition (Makridakis et al. 2020) was won by Smyl's ES-RNN, a hybrid of Exponential Smoothing and LSTM. Wide & Deep (Cheng et al., RecSys 2016) productionised the linear+neural pattern at Google Play. N-BEATS (Oreshkin et al., ICLR 2020) extended the idea to interpretable basis decomposition (polynomial trend + Fourier seasonality). MARST follows the same hybrid-statistical-neural lineage applied to imputation rather than forecasting.
+
+Within spatiotemporal imputation specifically, the closest design cousin is **STAMImputer** (IJCAI 2025), which uses a softmax-gated mixture of three neural experts (temporal attention, spatial graph attention, observation FFN) for traffic imputation. The architectural family is the same as MARST's — softmax-weighted blend of multiple predictors — but its experts are themselves neural modules rather than interpretable classical methods, the model is bidirectional rather than strictly causal, and it is evaluated on PemsD8 / SZ-Taxi / DiDi-SZ / NYC-Taxi rather than the standard PEMS-BAY / METR-LA / PEMS04 / PEMS08 benchmarks used here. **ImputeFormer** (Nie et al., KDD 2024) is the current published SOTA on PEMS-BAY / METR-LA and uses low-rank attention constraints with no anchor decomposition. **GRIN** (Cini et al., ICLR 2022) is the standard graph-imputation reference (≈29% MAE reduction over BRITS on PEMS-BAY). **Bridge-TS** (2025) uses pretrained transformer outputs as priors for diffusion-based imputation — the closest analogue to MARST's "feed cheap predictions as features" idea, but at much higher compute cost and without interpretability. **SNI** (Statistical-Neural Interaction, 2026) couples correlation-derived statistical priors with neural attention via a learned per-head regularisation coefficient, but for tabular data and with per-head (not per-position) gating.
+
+A 2024 benchmarking survey of 11+ spatiotemporal imputation methods (arXiv 2412.04733) confirms that **no published method feeds LOCF, Historical Average, or KNN as input features to a neural network, and none use a learned per-position softmax mixture over multiple imputation priors**. MARST occupies this gap.
+
+| Method | Year | Causal / streaming | Classical priors as inputs | Per-position mixture | PEMS-BAY / METR-LA |
+|---|---|---|---|---|---|
+| BRITS | 2018 | bidirectional | no | no | yes |
+| GRIN | 2022 | bidirectional | no | no | yes |
+| SAITS | 2022 | no | no | no | – |
+| ImputeFormer | 2024 | no | no | no | yes |
+| Bridge-TS | 2025 | no | neural priors | no (diffusion refine) | – |
+| STAMImputer | 2025 | bidirectional | no | yes (neural experts) | no |
+| SNI | 2026 | n/a (tabular) | yes (correlation) | per-head, not per-position | no (tabular) |
+| **MARST (ours)** | – | **yes** | **yes (LOCF + HA + KNN)** | **yes (per (sensor, time))** | **yes (all 4)** |
+
+The full literature review with quotes, references, and the three-paragraph defence brief against the "LOCF/HA/KNN are textbook methods, what's new?" reviewer objection lives in `RELATED_WORK.md`.
+
 ## Headline result
 
 MARST is the lowest-MAE model on every dataset, by a statistically significant margin (Wilcoxon signed-rank, Holm-adjusted across the 4 comparisons).
