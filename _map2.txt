@@ -1,0 +1,38 @@
+[ 0] markdown   38L | # MARST — Multi-Dataset Imputation Benchmark (Anti-Cheat v4)
+[ 1] code        5L | import torch
+[ 2] code      211L | import torch
+[ 3] code      271L | class STBlock(nn.Module):
+[ 4] code       70L | print(f"Loading data for {DATASET_NAME} ...")
+[ 5] markdown   40L | ## Models (Fair, Causal Evaluation)
+[ 6] code       61L | import numpy as np, torch
+[ 7] code       81L | from sklearn.linear_model import Ridge
+[ 8] code      111L | import torch.nn as nn
+[ 9] code       79L | # 10. TCN — causal dilated convolutions: no fix needed.
+[10] code      134L | # Graph baselines: feat [B,N,T,F] + adj A -> [B,N,T]
+[11] markdown    2L | ## Recent Causal Baselines — STID · DLinear · PatchTST · iTransformer
+[12] code      140L | # ============================================================================
+[13] code       77L | # Shared multi-seed train/eval helpers (used by MARST and the anchor-mixture ablatio
+[14] markdown   11L | ## MARST — Multi-Anchor Residual Spatiotemporal Transformer
+[15] code       27L | # MARST hyperparameters.
+[16] code        6L | # MARST result
+[17] code       20L | # Final comparison table
+[18] code       87L | # ── Extended Evaluation Metrics — ALL models ────────────────────────────────
+[19] markdown    2L | ## Leak Audit
+[20] code       79L | # ============================================================================
+[21] markdown    3L | ## Sparsity Sensitivity
+[22] code       66L | # Sparsity-sensitivity sweep on the already-trained MARST
+[23] markdown    8L | ## MARST Anchor-Mixture Ablation
+[24] code       60L | # ============================================================================
+[25] markdown   13L | ## Missing-Pattern Robustness
+[26] code      125L | # ============================================================================
+[27] markdown    3L | ## Save run + Cross-Dataset Aggregation
+[28] code       30L | # Save this run's results for cross-dataset aggregation
+[29] code       59L | # Cross-dataset aggregation: loads every results_<DATASET>.json present.
+[30] markdown    2L | ## Visualisations
+[31] code      252L | # ============================================================================
+[32] markdown    2L | ## Ours-vs-Others Comparison Figures
+[33] code       84L | # ============================================================================
+[34] markdown    2L | ## Thesis Figures — Qualitative, Spatial & Cross-Dataset
+[35] code      161L | # ============================================================================
+[36] markdown    2L | ## Sparsity Plot
+[37] code       20L | # Sparsity curve (saved as PNG)

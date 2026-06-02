@@ -1,0 +1,162 @@
+\begin{thebibliography}{20}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Cao et~al.(2018)Cao, Wang, Li, Zhou, Li, and Li]{cao2018brits}
+Wei Cao, Dong Wang, Jian Li, Hao Zhou, Lei Li, and Yitan Li.
+\newblock {BRITS}: Bidirectional recurrent imputation for time series.
+\newblock In \emph{Advances in Neural Information Processing Systems
+  (NeurIPS)}, 2018.
+
+\bibitem[Cheng et~al.(2016)Cheng, Koc, Harmsen, Shaked, Chandra, Aradhye,
+  Anderson, Corrado, Chai, Ispir, Anil, Haque, Hong, Jain, Liu, and
+  Shah]{cheng2016wide}
+Heng-Tze Cheng, Levent Koc, Jeremiah Harmsen, Tal Shaked, Tushar Chandra,
+  Hrishi Aradhye, Glen Anderson, Greg Corrado, Wei Chai, Mustafa Ispir, Rohan
+  Anil, Zakaria Haque, Lichan Hong, Vihan Jain, Xiaobing Liu, and Hemal Shah.
+\newblock Wide \& deep learning for recommender systems.
+\newblock In \emph{Proceedings of the 1st Workshop on Deep Learning for
+  Recommender Systems (DLRS@RecSys)}, pages 7--10, 2016.
+\newblock \doi{10.1145/2988450.2988454}.
+
+\bibitem[Cheng et~al.(2024)Cheng, Osman, Qu, and Ballan]{cheng2024faststi}
+Shaokang Cheng, Nada Osman, Shiru Qu, and Lamberto Ballan.
+\newblock {FastSTI}: A fast conditional pseudo numerical diffusion model for
+  spatio-temporal traffic data imputation.
+\newblock \emph{IEEE Transactions on Intelligent Transportation Systems}, 2024.
+\newblock Diffusion-based offline imputation with accelerated sampling
+  (8.3$\times$ faster than comparable diffusion methods).
+
+\bibitem[Cini et~al.(2022)Cini, Marisca, and Alippi]{cini2022grin}
+Andrea Cini, Ivan Marisca, and Cesare Alippi.
+\newblock Filling the gaps: Multivariate time series imputation by graph neural
+  networks.
+\newblock In \emph{International Conference on Learning Representations
+  (ICLR)}, 2022.
+
+\bibitem[Du et~al.(2023)Du, C{\^o}t{\'e}, and Liu]{du2023saits}
+Wenjie Du, David C{\^o}t{\'e}, and Yan Liu.
+\newblock {SAITS}: Self-attention-based imputation for time series.
+\newblock \emph{Expert Systems with Applications}, 219:\penalty0 119619, 2023.
+\newblock \doi{10.1016/j.eswa.2023.119619}.
+
+\bibitem[Fang et~al.(2024)Fang, Narayanan, Pan, Li, Liu, and
+  Zhe]{fang2024bayotide}
+Shikai Fang, Shandian Narayanan, Yanchao Pan, Ziheng Li, Tao Liu, and Shandian
+  Zhe.
+\newblock {BayOTIDE}: Bayesian online multivariate time series imputation with
+  functional decomposition.
+\newblock In \emph{International Conference on Machine Learning (ICML)}, 2024.
+
+\bibitem[Fedus et~al.(2022)Fedus, Zoph, and Shazeer]{fedus2021switch}
+William Fedus, Barret Zoph, and Noam Shazeer.
+\newblock Switch transformers: Scaling to trillion parameter models with simple
+  and efficient sparsity.
+\newblock \emph{Journal of Machine Learning Research}, 23\penalty0
+  (120):\penalty0 1--39, 2022.
+
+\bibitem[Li et~al.(2018)Li, Yu, Shahabi, and Liu]{li2018dcrnn}
+Yaguang Li, Rose Yu, Cyrus Shahabi, and Yan Liu.
+\newblock {DCRNN}: Diffusion convolutional recurrent neural network ---
+  data-driven traffic forecasting.
+\newblock In \emph{International Conference on Learning Representations
+  (ICLR)}, 2018.
+
+\bibitem[Liu et~al.(2023)Liu, Huang, Feng, Sun, Du, and Fu]{liu2023pristi}
+Mingzhe Liu, Han Huang, Hao Feng, Leilei Sun, Bowen Du, and Yanjie Fu.
+\newblock {PriSTI}: A conditional diffusion framework for spatiotemporal
+  imputation.
+\newblock \emph{arXiv preprint}, 2023.
+
+\bibitem[Liu et~al.(2024)Liu, Hu, Zhang, Wu, Wang, Ma, and
+  Long]{liu2024itransformer}
+Yong Liu, Tengge Hu, Haoran Zhang, Haixu Wu, Shiyu Wang, Lintao Ma, and
+  Mingsheng Long.
+\newblock {iTransformer}: Inverted transformers are effective for time series
+  forecasting.
+\newblock In \emph{International Conference on Learning Representations
+  (ICLR)}, 2024.
+
+\bibitem[Nie et~al.(2024)Nie, Qin, Mei, and Sun]{nie2024imputeformer}
+Tongyi Nie, Guoyang Qin, Yunpeng Mei, and Jian Sun.
+\newblock {ImputeFormer}: Low rankness-induced transformers for generalizable
+  spatiotemporal imputation.
+\newblock In \emph{Proceedings of the 30th ACM SIGKDD Conference on Knowledge
+  Discovery and Data Mining (KDD)}, pages 2260--2271, 2024.
+\newblock \doi{10.1145/3637528.3671751}.
+
+\bibitem[Nie et~al.(2023)Nie, Nguyen, Sinthong, and
+  Kalagnanam]{nie2023patchtst}
+Yuqi Nie, Nam~H. Nguyen, Phanwadee Sinthong, and Jayant Kalagnanam.
+\newblock A time series is worth 64 words: Long-term forecasting with
+  transformers.
+\newblock In \emph{International Conference on Learning Representations
+  (ICLR)}, 2023.
+
+\bibitem[Oreshkin et~al.(2020)Oreshkin, Carpov, Chapados, and
+  Bengio]{oreshkin2020nbeats}
+Boris~N. Oreshkin, Dmitri Carpov, Nicolas Chapados, and Yoshua Bengio.
+\newblock {N-BEATS}: Neural basis expansion analysis for interpretable time
+  series forecasting.
+\newblock In \emph{International Conference on Learning Representations
+  (ICLR)}, 2020.
+
+\bibitem[Shao et~al.(2022)Shao, Zhang, Wang, Wei, and Xu]{shao2022stid}
+Zezhi Shao, Zhao Zhang, Fei Wang, Wei Wei, and Yongjun Xu.
+\newblock {STID}: Spatial-temporal identity --- a simple yet effective baseline
+  for multivariate time series forecasting.
+\newblock In \emph{Proceedings of the 31st ACM International Conference on
+  Information \& Knowledge Management (CIKM)}, pages 4454--4458, 2022.
+\newblock \doi{10.1145/3511808.3557702}.
+
+\bibitem[Shazeer et~al.(2017)Shazeer, Mirhoseini, Maziarz, Davis, Le, Hinton,
+  and Dean]{shazeer2017moe}
+Noam Shazeer, Azalia Mirhoseini, Krzysztof Maziarz, Andy Davis, Quoc Le,
+  Geoffrey Hinton, and Jeff Dean.
+\newblock Outrageously large neural networks: The sparsely-gated
+  mixture-of-experts layer.
+\newblock In \emph{International Conference on Learning Representations
+  (ICLR)}, 2017.
+
+\bibitem[Smyl(2020)]{smyl2020hybrid}
+Slawek Smyl.
+\newblock A hybrid method of exponential smoothing and recurrent neural
+  networks for time series forecasting.
+\newblock \emph{International Journal of Forecasting}, 36\penalty0
+  (1):\penalty0 75--85, 2020.
+\newblock \doi{10.1016/j.ijforecast.2019.03.017}.
+
+\bibitem[Wang et~al.(2025)Wang, Peng, and Wang]{wang2025stamimputer}
+Yiming Wang, Hao Peng, and Senzhang Wang.
+\newblock {STAMImputer}: Spatio-temporal attention {MoE} for traffic data
+  imputation.
+\newblock In \emph{Proceedings of the Thirty-Fourth International Joint
+  Conference on Artificial Intelligence (IJCAI)}, 2025.
+
+\bibitem[Wu et~al.(2019)Wu, Pan, Long, Jiang, and Zhang]{wu2019gwn}
+Zonghan Wu, Shirui Pan, Guodong Long, Jing Jiang, and Chengqi Zhang.
+\newblock Graph {WaveNet} for deep spatial-temporal graph modeling.
+\newblock In \emph{Proceedings of the Twenty-Eighth International Joint
+  Conference on Artificial Intelligence (IJCAI)}, pages 1907--1913, 2019.
+\newblock \doi{10.24963/ijcai.2019/264}.
+
+\bibitem[Yang et~al.(2025)Yang, Chi, Gao, Wang, and
+  Wang]{yang2025streamingtensor}
+Yiyang Yang, Xiejian Chi, Shanxing Gao, Kaidong Wang, and Yao Wang.
+\newblock A spatio-temporal online robust tensor recovery approach for
+  streaming traffic data imputation.
+\newblock \emph{arXiv preprint}, 2025.
+\newblock Online tensor recovery for streaming traffic; reports up to three
+  orders of magnitude speed-up over batch baselines.
+
+\bibitem[Zeng et~al.(2023)Zeng, Chen, Zhang, and Xu]{zeng2023dlinear}
+Ailing Zeng, Muxi Chen, Lei Zhang, and Qiang Xu.
+\newblock Are transformers effective for time series forecasting?
+\newblock In \emph{Proceedings of the AAAI Conference on Artificial
+  Intelligence}, volume~37, pages 11121--11128, 2023.
+\newblock \doi{10.1609/aaai.v37i9.26317}.
+
+\end{thebibliography}

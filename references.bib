@@ -1,0 +1,301 @@
+% =============================================================================
+% references.bib — Master-compatible reference file for MARST paper
+% =============================================================================
+%
+% Citekey convention: <firstauthor><year><shortkeyword>   (lowercase, no spaces)
+%   e.g.   smyl2020hybrid    cini2022grin    nie2024imputeformer
+%
+% Field discipline (strictest convention — compatible with elsarticle,
+% IEEEtran, acm, plainnat, abbrvnat, natbib):
+%   - Title-case for {title} (wrapped in extra braces where needed to
+%     preserve case-sensitive tokens like "BRITS", "M4", "GRIN").
+%   - Full author lists with "and" separators, no "et al." in source.
+%   - {pages} uses double dash --, {year} is integer, {volume}/{number}
+%     populated where known.
+%   - {eprint} + {archiveprefix} for arXiv preprints (renders correctly
+%     under both natbib and acm styles).
+%   - {doi} populated when available.
+%
+% Maintenance: paste these entries verbatim into ~/refs/master.bib.
+% Existing keys are stable; do not rename without grep-replacing across
+% every .tex file that cites them.
+% =============================================================================
+
+@article{yang2025streamingtensor,
+  title     = {A Spatio-Temporal Online Robust Tensor Recovery Approach for
+               Streaming Traffic Data Imputation},
+  author    = {Yang, Yiyang and Chi, Xiejian and Gao, Shanxing and Wang, Kaidong
+               and Wang, Yao},
+  journal   = {arXiv preprint},
+  year      = {2025},
+  eprint    = {2511.01267},
+  archiveprefix = {arXiv},
+  note      = {Online tensor recovery for streaming traffic; reports up to
+               three orders of magnitude speed-up over batch baselines.},
+}
+
+@article{cheng2024faststi,
+  title     = {{FastSTI}: A Fast Conditional Pseudo Numerical Diffusion Model
+               for Spatio-temporal Traffic Data Imputation},
+  author    = {Cheng, Shaokang and Osman, Nada and Qu, Shiru and Ballan, Lamberto},
+  journal   = {IEEE Transactions on Intelligent Transportation Systems},
+  year      = {2024},
+  eprint    = {2410.15248},
+  archiveprefix = {arXiv},
+  note      = {Diffusion-based offline imputation with accelerated sampling
+               (8.3$\times$ faster than comparable diffusion methods).},
+}
+
+@inproceedings{fang2024bayotide,
+  title     = {{BayOTIDE}: Bayesian Online Multivariate Time Series Imputation
+               with Functional Decomposition},
+  author    = {Fang, Shikai and Narayanan, Shandian and Pan, Yanchao and
+               Li, Ziheng and Liu, Tao and Zhe, Shandian},
+  booktitle = {International Conference on Machine Learning (ICML)},
+  year      = {2024},
+  eprint    = {2308.14906},
+  archiveprefix = {arXiv},
+}
+
+@inproceedings{shazeer2017moe,
+  title     = {Outrageously Large Neural Networks: The Sparsely-Gated
+               Mixture-of-Experts Layer},
+  author    = {Shazeer, Noam and Mirhoseini, Azalia and Maziarz, Krzysztof
+               and Davis, Andy and Le, Quoc and Hinton, Geoffrey and
+               Dean, Jeff},
+  booktitle = {International Conference on Learning Representations (ICLR)},
+  year      = {2017},
+  eprint    = {1701.06538},
+  archiveprefix = {arXiv},
+}
+
+@inproceedings{cao2018brits,
+  title     = {{BRITS}: Bidirectional Recurrent Imputation for Time Series},
+  author    = {Cao, Wei and Wang, Dong and Li, Jian and Zhou, Hao and Li, Lei and Li, Yitan},
+  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},
+  year      = {2018},
+  eprint    = {1805.10572},
+  archiveprefix = {arXiv},
+}
+
+@inproceedings{cheng2016wide,
+  title     = {Wide \& Deep Learning for Recommender Systems},
+  author    = {Cheng, Heng-Tze and Koc, Levent and Harmsen, Jeremiah and
+               Shaked, Tal and Chandra, Tushar and Aradhye, Hrishi and
+               Anderson, Glen and Corrado, Greg and Chai, Wei and
+               Ispir, Mustafa and Anil, Rohan and Haque, Zakaria and
+               Hong, Lichan and Jain, Vihan and Liu, Xiaobing and
+               Shah, Hemal},
+  booktitle = {Proceedings of the 1st Workshop on Deep Learning for
+               Recommender Systems (DLRS@RecSys)},
+  year      = {2016},
+  pages     = {7--10},
+  eprint    = {1606.07792},
+  archiveprefix = {arXiv},
+  doi       = {10.1145/2988450.2988454},
+}
+
+@inproceedings{cini2022grin,
+  title     = {Filling the Gaps: Multivariate Time Series Imputation by
+               Graph Neural Networks},
+  author    = {Cini, Andrea and Marisca, Ivan and Alippi, Cesare},
+  booktitle = {International Conference on Learning Representations (ICLR)},
+  year      = {2022},
+  eprint    = {2108.00298},
+  archiveprefix = {arXiv},
+}
+
+@article{du2023saits,
+  title     = {{SAITS}: Self-Attention-based Imputation for Time Series},
+  author    = {Du, Wenjie and C{\^o}t{\'e}, David and Liu, Yan},
+  journal   = {Expert Systems with Applications},
+  volume    = {219},
+  pages     = {119619},
+  year      = {2023},
+  eprint    = {2202.08516},
+  archiveprefix = {arXiv},
+  doi       = {10.1016/j.eswa.2023.119619},
+}
+
+@article{fedus2021switch,
+  title     = {Switch Transformers: Scaling to Trillion Parameter Models
+               with Simple and Efficient Sparsity},
+  author    = {Fedus, William and Zoph, Barret and Shazeer, Noam},
+  journal   = {Journal of Machine Learning Research},
+  volume    = {23},
+  number    = {120},
+  pages     = {1--39},
+  year      = {2022},
+  eprint    = {2101.03961},
+  archiveprefix = {arXiv},
+}
+
+@inproceedings{he2016resnet,
+  title     = {Deep Residual Learning for Image Recognition},
+  author    = {He, Kaiming and Zhang, Xiangyu and Ren, Shaoqing and Sun, Jian},
+  booktitle = {IEEE Conference on Computer Vision and Pattern Recognition (CVPR)},
+  year      = {2016},
+  pages     = {770--778},
+  eprint    = {1512.03385},
+  archiveprefix = {arXiv},
+  doi       = {10.1109/CVPR.2016.90},
+}
+
+@inproceedings{lai2018lstnet,
+  title     = {Modeling Long- and Short-Term Temporal Patterns with Deep
+               Neural Networks},
+  author    = {Lai, Guokun and Chang, Wei-Cheng and Yang, Yiming and Liu, Hanxiao},
+  booktitle = {Proceedings of the 41st International ACM SIGIR Conference on
+               Research and Development in Information Retrieval (SIGIR)},
+  year      = {2018},
+  pages     = {95--104},
+  eprint    = {1703.07015},
+  archiveprefix = {arXiv},
+  doi       = {10.1145/3209978.3210006},
+}
+
+@inproceedings{li2018dcrnn,
+  title     = {{DCRNN}: Diffusion Convolutional Recurrent Neural Network ---
+               Data-Driven Traffic Forecasting},
+  author    = {Li, Yaguang and Yu, Rose and Shahabi, Cyrus and Liu, Yan},
+  booktitle = {International Conference on Learning Representations (ICLR)},
+  year      = {2018},
+  eprint    = {1707.01926},
+  archiveprefix = {arXiv},
+}
+
+@article{liu2023pristi,
+  title     = {{PriSTI}: A Conditional Diffusion Framework for Spatiotemporal
+               Imputation},
+  author    = {Liu, Mingzhe and Huang, Han and Feng, Hao and Sun, Leilei and
+               Du, Bowen and Fu, Yanjie},
+  journal   = {arXiv preprint},
+  year      = {2023},
+  eprint    = {2302.09746},
+  archiveprefix = {arXiv},
+}
+
+@inproceedings{liu2024itransformer,
+  title     = {{iTransformer}: Inverted Transformers are Effective for Time
+               Series Forecasting},
+  author    = {Liu, Yong and Hu, Tengge and Zhang, Haoran and Wu, Haixu and
+               Wang, Shiyu and Ma, Lintao and Long, Mingsheng},
+  booktitle = {International Conference on Learning Representations (ICLR)},
+  year      = {2024},
+  eprint    = {2310.06625},
+  archiveprefix = {arXiv},
+}
+
+@inproceedings{nie2024imputeformer,
+  title     = {{ImputeFormer}: Low Rankness-Induced Transformers for
+               Generalizable Spatiotemporal Imputation},
+  author    = {Nie, Tongyi and Qin, Guoyang and Mei, Yunpeng and Sun, Jian},
+  booktitle = {Proceedings of the 30th ACM SIGKDD Conference on Knowledge
+               Discovery and Data Mining (KDD)},
+  year      = {2024},
+  pages     = {2260--2271},
+  eprint    = {2312.01728},
+  archiveprefix = {arXiv},
+  doi       = {10.1145/3637528.3671751},
+}
+
+@inproceedings{nie2023patchtst,
+  title     = {A Time Series is Worth 64 Words: Long-term Forecasting with
+               Transformers},
+  author    = {Nie, Yuqi and Nguyen, Nam H. and Sinthong, Phanwadee and
+               Kalagnanam, Jayant},
+  booktitle = {International Conference on Learning Representations (ICLR)},
+  year      = {2023},
+  eprint    = {2211.14730},
+  archiveprefix = {arXiv},
+}
+
+@inproceedings{oreshkin2020nbeats,
+  title     = {{N-BEATS}: Neural Basis Expansion Analysis for Interpretable
+               Time Series Forecasting},
+  author    = {Oreshkin, Boris N. and Carpov, Dmitri and Chapados, Nicolas and
+               Bengio, Yoshua},
+  booktitle = {International Conference on Learning Representations (ICLR)},
+  year      = {2020},
+  eprint    = {1905.10437},
+  archiveprefix = {arXiv},
+}
+
+@inproceedings{shao2022stid,
+  title     = {{STID}: Spatial-Temporal Identity --- A Simple yet Effective
+               Baseline for Multivariate Time Series Forecasting},
+  author    = {Shao, Zezhi and Zhang, Zhao and Wang, Fei and Wei, Wei and
+               Xu, Yongjun},
+  booktitle = {Proceedings of the 31st ACM International Conference on
+               Information \& Knowledge Management (CIKM)},
+  year      = {2022},
+  pages     = {4454--4458},
+  eprint    = {2208.05233},
+  archiveprefix = {arXiv},
+  doi       = {10.1145/3511808.3557702},
+}
+
+@article{smyl2020hybrid,
+  title     = {A Hybrid Method of Exponential Smoothing and Recurrent Neural
+               Networks for Time Series Forecasting},
+  author    = {Smyl, Slawek},
+  journal   = {International Journal of Forecasting},
+  volume    = {36},
+  number    = {1},
+  pages     = {75--85},
+  year      = {2020},
+  doi       = {10.1016/j.ijforecast.2019.03.017},
+}
+
+@inproceedings{wang2025stamimputer,
+  title     = {{STAMImputer}: Spatio-Temporal Attention {MoE} for Traffic Data
+               Imputation},
+  author    = {Wang, Yiming and Peng, Hao and Wang, Senzhang},
+  booktitle = {Proceedings of the Thirty-Fourth International Joint Conference
+               on Artificial Intelligence (IJCAI)},
+  year      = {2025},
+  eprint    = {2506.08054},
+  archiveprefix = {arXiv},
+}
+
+@article{stti2024survey,
+  title     = {A Survey and Benchmarking of Spatial-Temporal Traffic Data
+               Imputation Models},
+  author    = {Anonymous},
+  journal   = {arXiv preprint},
+  year      = {2024},
+  eprint    = {2412.04733},
+  archiveprefix = {arXiv},
+  note      = {Survey of 11+ spatiotemporal imputation methods including BRITS,
+               GRIN, SAITS, PriSTI, ImputeFormer.},
+}
+
+@inproceedings{wu2019gwn,
+  title     = {Graph {WaveNet} for Deep Spatial-Temporal Graph Modeling},
+  author    = {Wu, Zonghan and Pan, Shirui and Long, Guodong and Jiang, Jing
+               and Zhang, Chengqi},
+  booktitle = {Proceedings of the Twenty-Eighth International Joint Conference
+               on Artificial Intelligence (IJCAI)},
+  year      = {2019},
+  pages     = {1907--1913},
+  eprint    = {1906.00121},
+  archiveprefix = {arXiv},
+  doi       = {10.24963/ijcai.2019/264},
+}
+
+@inproceedings{zeng2023dlinear,
+  title     = {Are Transformers Effective for Time Series Forecasting?},
+  author    = {Zeng, Ailing and Chen, Muxi and Zhang, Lei and Xu, Qiang},
+  booktitle = {Proceedings of the AAAI Conference on Artificial Intelligence},
+  volume    = {37},
+  number    = {9},
+  pages     = {11121--11128},
+  year      = {2023},
+  eprint    = {2205.13504},
+  archiveprefix = {arXiv},
+  doi       = {10.1609/aaai.v37i9.26317},
+}
+
+% =============================================================================
+% End of references.bib
+% =============================================================================

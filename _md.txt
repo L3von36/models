@@ -1,0 +1,189 @@
+
+==========================================================================================
+==== MD CELL 0 ====
+==========================================================================================
+# MARST & ST-Transformer V5 — Multi-Dataset Imputation Benchmark (Anti-Cheat v4)
+### Datasets: PEMS-BAY, METR-LA (speed) + PEMS04, PEMS08 (flow). Set `DATASET` in the config cell; run once per dataset.
+Speed datasets use the zero-as-missing convention; flow datasets are fully observed with synthetic random masking. 80% sparsity, 5 seeds.
+
+Two spatiotemporal-transformer models are trained head-to-head over the same trunk:
+**V5** (single `soft_locf` anchor + meta-gate) and **MARST** (Multi-Anchor Residual
+Spatiotemporal Transformer — a learned softmax mixture of LOCF / HA / KNN anchors).
+The notebook also runs a V5 component **ablation**, a **sparsity-sensitivity** sweep,
+an extended **evaluation-metrics** table, and **cross-dataset** aggregation.
+
+All anti-leak invariants hold per dataset: a blind (masked) sensor never sees its own value, no future leakage, train-only stats, no self-loops.
+
+**Anti-cheat audit v4** — every model receives *only the same 20% observed sensor readings*
+as input. No model sees the held-out 80% or future time steps.
+
+### Fixes applied (baselines & evaluation)
+
+| # | Fix | Models affected |
+|---|-----|-----------------|
+| v2-1 | BiLSTM bidirectional→forward | BiLSTM |
+| v2-2 | BRITS backward GRU removed | BRITS-lite |
+| v2-3 | SAITS/ASTGCN causal attention mask | SAITS-lite, ASTGCN-lite |
+| v3-1 | Unified numpy RNG for eval masks | ALL models |
+| v3-2 | Eval chunk size = training window (48) | Our models |
+| v4-1 | Node embedding added | MLP, SAITS-lite |
+| v4-2 | KNN masked-distance (only observed dims) | KNN |
+| v4-3 | Graph models: HA fill for unobserved nodes | DCRNN, GWN, ASTGCN |
+| v4-5 | Staleness feature (steps-since-last-obs / 48) | V5, MARST |
+| v4-6 | Soft LOCF: EMA(0.95) toward HA prior | V5 |
+| v4-7 | Masking curriculum 60%→80% over 600 epochs | V5, MARST |
+| v4-8 | Larger model: hidden 128, 6 layers, 2000 epochs | V5, MARST |
+
+**v4-1 rationale:** at 80% sparsity, unobserved nodes receive input `[0, 0, sin, cos]`.
+Without a node embedding, MLP and SAITS cannot distinguish sensors and collapse to
+a global prediction — explaining their worse-than-HA results.
+
+**v4-3 rationale:** graph diffusion was spreading masked zeros into neighbouring nodes,
+corrupting the spatial signal. Filling with the HA prior gives a neutral, informative
+starting point while the mask feature still tells the model which nodes are real.
+
+
+==========================================================================================
+==== MD CELL 5 ====
+==========================================================================================
+## Models (Fair, Causal Evaluation)
+
+All models receive **only the 20% observed sensor readings** (`x * m_eff`) as input.
+No model has access to the held-out 80% or to future time steps.
+Models marked **[fixed]** had future-leakage bugs that have now been corrected.
+
+**Baselines**
+
+| # | Model | Family | Graph? | Causal? |
+|---|-------|--------|--------|---------|
+| 1 | Historical Average (HA) | Statistical | No | ✓ |
+| 2 | LOCF | Statistical | No | ✓ |
+| 3 | Global Mean | Statistical | No | ✓ |
+| 4 | Ridge Regression | Linear | No | ✓ |
+| 5 | KNN Imputer (spatial, train-set neighbors only) | Non-param | No | ✓ |
+| 6 | MLP | Neural | No | ✓ |
+| 7 | LSTM | RNN | No | ✓ |
+| 8 | BiLSTM → 2L-LSTM **[fixed]** | RNN | No | ✓ |
+| 9 | GRU | RNN | No | ✓ |
+| 10 | TCN (causal dilated) | Conv | No | ✓ |
+| 11 | SAITS-lite **[fixed]** | Transformer | No | ✓ |
+| 12 | BRITS-lite **[fixed]** | RNN+decay | No | ✓ |
+| 13 | DCRNN-lite | GNN+RNN | Yes | ✓ |
+| 14 | ASTGCN-lite **[fixed]** | GNN+Attn | Yes | ✓ |
+| 15 | GWN-lite | GNN+TCN | Yes | ✓ |
+
+**Our models** (shown as `18.` / `19.` in the results table; the earlier V3/V4 variants have been removed)
+
+| # | Model | Anchor | Graph? | Causal? |
+|---|-------|--------|--------|---------|
+| 18 | **MaskedSTTransformerV5** | single `soft_locf` + meta-gate | Yes | ✓ |
+| 19 | **MARST** (ours) | multi-anchor LOCF/HA/KNN softmax mix + meta-gate | Yes | ✓ |
+
+
+==========================================================================================
+==== MD CELL 11 ====
+==========================================================================================
+## Recent Causal Baselines — STID · DLinear · PatchTST · iTransformer
+Faithful (not -lite) implementations of four recent models, each adapted to the shared **causal** protocol (a prediction at time *t* uses only observed values at times ≤ *t*; verified by a future-perturbation test). They reuse `train_g`/`eval_g`, so masks, HA-fill, de-normalisation and eval seeds are identical to every other model.
+
+==========================================================================================
+==== MD CELL 15 ====
+==========================================================================================
+## MARST — Multi-Anchor Residual Spatiotemporal Transformer
+
+A new model trained **alongside V5** for direct comparison. MARST keeps V5's
+spatiotemporal trunk (alternating temporal/spatial `STBlock`, causal temporal
+mask, mask-aware spatial attention), residual head, and meta-gate `α`, but
+generalises V5's *single* anchor (`soft_locf`) to a **learned mixture of three
+causal anchors** at every (sensor, time) cell:
+
+- **a_LOCF** — last observed value at the sensor (recency)
+- **a_HA** — per-sensor historical average for the time-of-day (seasonality)
+- **a_KNN** — mean of *currently-observed* graph neighbours (spatial context)
+
+A small head emits a softmax `π ∈ Δ²`; the blended anchor is
+`a = π_LOCF·a_LOCF + π_HA·a_HA + π_KNN·a_KNN`, and the prediction is
+`ŷ = a + α·r`. Same anti-leak invariants hold: anchors are causal and the
+adjacency diagonal is zero, so a blind node never reads its own masked value.
+Same hyperparameters as V5 (hidden 128, 6 layers, 2000 epochs, 60%→80%
+masking curriculum) for a fair head-to-head.
+
+Both models are trained over **3 initialization seeds** (`TRAIN_SEEDS`); the reported MAE is **mean ± std across training seeds** (each averaged over the 5 shared eval masks), and a **paired t-test** across the shared eval masks reports MARST-vs-V5 significance. The representative first-seed run is reused for the qualitative figures and the extended-metrics table.
+
+
+==========================================================================================
+==== MD CELL 20 ====
+==========================================================================================
+## Ablation Study — V5 component leave-one-out
+
+Each variant disables **one** of V5's additions; everything else is identical to the full model (same training budget, seeds, masking curriculum). `delta MAE > 0` means removing that component *hurt* — i.e. it was contributing. Runs on the dataset selected in the config cell.
+
+Anti-leak invariants are preserved in every variant: masked positions are zeroed, adjacency has no self-loops, LOCF/staleness/soft_locf stay causal, and stats are train-only.
+
+==========================================================================================
+==== MD CELL 22 ====
+==========================================================================================
+## Sparsity Sensitivity
+
+Evaluate the **trained** MARST (against LOCF and Historical-Average references) as the fraction of blind sensors grows. Training sparsity was fixed at 80%; this probes robustness/extrapolation. Same anti-leak masking: only `(masked) & (valid)` positions are scored, blind sensors are zeroed.
+
+==========================================================================================
+==== MD CELL 24 ====
+==========================================================================================
+## MARST Anchor-Mixture Ablation
+
+Leave-one-out (and keep-one) over MARST's three causal anchors -- **LOCF** (recency),
+**HA** (seasonality), **KNN** (spatial). Each variant trains a MARST whose anchor set
+is restricted; the trunk, residual head, meta-gate, training budget, masking
+curriculum, and seed are identical to the full model. `dMAE > 0` means removing /
+restricting that anchor *hurt* (it was contributing). One model per variant is
+trained at seed 0 and evaluated over the shared `EVAL_SEEDS` masks, mirroring the V5
+component ablation. Anti-leak invariants are preserved in every variant.
+
+==========================================================================================
+==== MD CELL 26 ====
+==========================================================================================
+## Missing-Pattern Robustness
+
+Re-evaluates the already-trained models (no retraining) at the configured sparsity
+under three realistic missingness regimes:
+
+- **point** -- i.i.d. Bernoulli dropout (MCAR), as in the main benchmark.
+- **block** -- per-sensor *consecutive* temporal gaps (sensor outages), `BLOCK_LEN` steps each.
+- **sensor** -- a fraction of sensors fully offline across the whole window.
+
+A method can win at point missing yet degrade under block / sensor missing; this probes
+that. Same anti-leak scoring: only `(blind & valid)` positions are evaluated, every
+timestep keeps >=1 observed sensor, and the spatial / classical baselines reuse the exact
+prediction code from the main benchmark.
+
+==========================================================================================
+==== MD CELL 28 ====
+==========================================================================================
+## Save run + Cross-Dataset Aggregation
+
+The first cell writes `results_<DATASET>.json` (MAE table, extended metrics, ablation, sparsity sweep). Run the notebook once per dataset, then the aggregation cell stitches every saved run into a single cross-dataset table.
+
+==========================================================================================
+==== MD CELL 31 ====
+==========================================================================================
+## Visualisations
+
+==========================================================================================
+==== MD CELL 33 ====
+==========================================================================================
+## Ours-vs-Others Comparison Figures
+Three figures focused on how MARST/V5 compare to the baselines (incl. the recent causal SOTA): per-model improvement, overall-vs-congestion error, and family means.
+
+==========================================================================================
+==== MD CELL 35 ====
+==========================================================================================
+## Thesis Figures — Qualitative, Spatial & Cross-Dataset
+Explanatory figures for the write-up: qualitative imputation traces (GT vs MARST with held-out gaps shaded), the sensor×time missingness map, a spatial graph view (per-sensor error + dominant anchor), and the cross-dataset bar. Saved as PNG + vector PDF. NOTE: the model architecture schematic must be drawn separately (TikZ / draw.io) — it cannot be auto-generated from run data.
+
+==========================================================================================
+==== MD CELL 37 ====
+==========================================================================================
+## Ablation & Sparsity Plots
+
+Saves `fig_ablation_<DATASET>.png` and `fig_sparsity_<DATASET>.png`. Skips gracefully if the ablation / sparsity cells above were not run.

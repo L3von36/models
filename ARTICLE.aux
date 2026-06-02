@@ -1,0 +1,223 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\bibstyle{plainnat}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:intro}{{1}{1}{Introduction}{section.1}{}}
+\citation{cao2018brits}
+\citation{cini2022grin}
+\citation{du2023saits}
+\citation{liu2023pristi}
+\citation{nie2024imputeformer}
+\citation{fang2024bayotide}
+\citation{fedus2021switch}
+\citation{shazeer2017moe}
+\newlabel{eq:marst-prediction}{{1}{2}{Introduction}{equation.1}{}}
+\citation{fedus2021switch}
+\citation{liu2024itransformer}
+\citation{cao2018brits}
+\citation{fang2024bayotide}
+\@writefile{toc}{\contentsline {paragraph}{Contributions.}{3}{equation.1}\protected@file@percent }
+\citation{cao2018brits}
+\citation{cini2022grin}
+\citation{du2023saits}
+\citation{liu2023pristi}
+\citation{nie2024imputeformer}
+\citation{wang2025stamimputer}
+\citation{fedus2021switch}
+\citation{yang2025streamingtensor}
+\citation{cheng2024faststi}
+\citation{smyl2020hybrid}
+\citation{cheng2016wide}
+\citation{oreshkin2020nbeats}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{4}{section.2}\protected@file@percent }
+\newlabel{sec:related}{{2}{4}{Related Work}{section.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Streaming versus offline imputation.}{4}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{End-to-end neural imputation.}{4}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Mixture-of-experts for imputation.}{4}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Recent post-BayOTIDE streaming and offline work.}{4}{section.2}\protected@file@percent }
+\citation{cao2018brits}
+\citation{cini2022grin}
+\citation{du2023saits}
+\citation{liu2023pristi}
+\citation{fang2024bayotide}
+\citation{nie2024imputeformer}
+\citation{wang2025stamimputer}
+\@writefile{toc}{\contentsline {paragraph}{Hybrid statistical-neural models.}{5}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Positioning matrix.}{5}{section.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Positioning matrix. Four axes that distinguish \textsc  {Marst}\xspace  from the closest published methods: strict causality (streaming deployability), classical priors as input features, learned per-position softmax mixture, and evaluation on the four standard traffic benchmarks.}}{5}{table.caption.1}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:positioning}{{1}{5}{Positioning matrix. Four axes that distinguish \MARST from the closest published methods: strict causality (streaming deployability), classical priors as input features, learned per-position softmax mixture, and evaluation on the four standard traffic benchmarks}{table.caption.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3}The MARST Model}{5}{section.3}\protected@file@percent }
+\newlabel{sec:model}{{3}{5}{The MARST Model}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Problem setup}{5}{subsection.3.1}\protected@file@percent }
+\newlabel{sec:model-problem}{{3.1}{5}{Problem setup}{subsection.3.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces The imputation task on PEMS08. Left: complete ground-truth tensor for the first 60 sensors of PEMS08 over the 450-step evaluation window. Right: the same window with 80\,\% of cells hidden (grey). \textsc  {Marst}\xspace  must reconstruct the left panel from the right one, using only observations at times $\leq t$ when emitting $\hat  {y}(t, n)$.}}{6}{figure.caption.2}\protected@file@percent }
+\newlabel{fig:setup}{{1}{6}{The imputation task on PEMS08. Left: complete ground-truth tensor for the first 60 sensors of PEMS08 over the 450-step evaluation window. Right: the same window with 80\,\% of cells hidden (grey). \MARST must reconstruct the left panel from the right one, using only observations at times $\leq t$ when emitting $\hat {y}(t, n)$}{figure.caption.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Three causal anchors}{6}{subsection.3.2}\protected@file@percent }
+\newlabel{sec:model-anchors}{{3.2}{6}{Three causal anchors}{subsection.3.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Soft \textsc  {locf}\xspace  anchor.}{6}{subsection.3.2}\protected@file@percent }
+\newlabel{eq:soft-locf}{{3}{6}{Soft \LOCF anchor}{equation.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{\textsc  {ha}\xspace  anchor.}{6}{equation.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{\textsc  {knn}\xspace  anchor.}{7}{equation.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Architecture}{7}{subsection.3.3}\protected@file@percent }
+\newlabel{sec:model-arch}{{3.3}{7}{Architecture}{subsection.3.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Training: jam-weighted Huber + load-balanced gate}{7}{subsection.3.4}\protected@file@percent }
+\newlabel{sec:model-training}{{3.4}{7}{Training: jam-weighted Huber + load-balanced gate}{subsection.3.4}{}}
+\newlabel{eq:loss-imp}{{6}{7}{Training: jam-weighted Huber + load-balanced gate}{equation.6}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces \textsc  {Marst}\xspace  architecture. Three causal anchors are computed on the left ($a_{\textsc  {locf}\xspace  }$ with per-sensor learnable EMA decay $d_n = \sigma (\ell _n)$, $a_{\textsc  {ha}\xspace  }$ from the training-window seasonal lookup, $a_{\textsc  {knn}\xspace  }$ from the adjacency-weighted observed-neighbour mean) and stacked with the masked value, the binary mask, the time-of-day encoding, the staleness counter, and the 2-hop neighbour-mean into a 9-channel feature. A linear projection $\mathbb  {R}^{9} \to \mathbb  {R}^{128}$ is augmented with per-sensor identity and sinusoidal time-of-day position embeddings and passed through six STBlock layers, each alternating a causal-masked temporal self-attention sub-layer with a mask-aware spatial self-attention sub-layer. Three heads finish the model: the \emph  {anchor gate} emits $\bm  {\pi }\in \Delta ^{2}$, the \emph  {residual head} emits $r$, and the \emph  {meta-gate} emits the scalar mixing weight $\alpha \in (0, 1)$. The final prediction is given by Equation~\ref {eq:marst-prediction}.}}{8}{figure.caption.3}\protected@file@percent }
+\newlabel{fig:architecture}{{2}{8}{\MARST architecture. Three causal anchors are computed on the left ($a_{\LOCF }$ with per-sensor learnable EMA decay $d_n = \sigma (\ell _n)$, $a_{\HA }$ from the training-window seasonal lookup, $a_{\KNN }$ from the adjacency-weighted observed-neighbour mean) and stacked with the masked value, the binary mask, the time-of-day encoding, the staleness counter, and the 2-hop neighbour-mean into a 9-channel feature. A linear projection $\Real ^{9} \to \Real ^{128}$ is augmented with per-sensor identity and sinusoidal time-of-day position embeddings and passed through six STBlock layers, each alternating a causal-masked temporal self-attention sub-layer with a mask-aware spatial self-attention sub-layer. Three heads finish the model: the \emph {anchor gate} emits $\gatevec \in \Delta ^{2}$, the \emph {residual head} emits $r$, and the \emph {meta-gate} emits the scalar mixing weight $\alpha \in (0, 1)$. The final prediction is given by Equation~\ref {eq:marst-prediction}}{figure.caption.3}{}}
+\newlabel{eq:loss-lb}{{7}{8}{Training: jam-weighted Huber + load-balanced gate}{equation.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Anti-leak invariants}{8}{subsection.3.5}\protected@file@percent }
+\newlabel{sec:model-leak}{{3.5}{8}{Anti-leak invariants}{subsection.3.5}{}}
+\citation{du2023saits}
+\citation{cao2018brits}
+\citation{li2018dcrnn}
+\citation{wu2019gwn}
+\citation{shao2022stid}
+\citation{zeng2023dlinear}
+\citation{nie2023patchtst}
+\citation{liu2024itransformer}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experimental Setup}{9}{section.4}\protected@file@percent }
+\newlabel{sec:setup}{{4}{9}{Experimental Setup}{section.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Datasets.}{9}{section.4}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Dataset summary. Train window ends at step 4000; evaluation window is steps 4500--4950 (450 steps after a 500-step anti-leak gap). For the speed datasets the zero-value-as-missing convention applies, so the validity mask $V$ rules them out of the loss; for the flow datasets every cell is reported and $V \equiv 1$.}}{9}{table.caption.4}\protected@file@percent }
+\newlabel{tab:datasets}{{2}{9}{Dataset summary. Train window ends at step 4000; evaluation window is steps 4500--4950 (450 steps after a 500-step anti-leak gap). For the speed datasets the zero-value-as-missing convention applies, so the validity mask $V$ rules them out of the loss; for the flow datasets every cell is reported and $V \equiv 1$}{table.caption.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Protocol.}{9}{table.caption.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Baselines.}{9}{table.caption.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Metrics.}{10}{table.caption.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Hardware and runtime.}{10}{table.caption.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Results}{10}{section.5}\protected@file@percent }
+\newlabel{sec:results}{{5}{10}{Results}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Main MAE}{10}{subsection.5.1}\protected@file@percent }
+\newlabel{sec:results-main}{{5.1}{10}{Main MAE}{subsection.5.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Main MAE results on the four standard traffic benchmarks at 80\,\% sparsity, 15 evaluations per dataset (3 training seeds $\times $ 5 eval-mask seeds). ``Best baseline'' is the strongest individual baseline per dataset. Holm-adjusted Wilcoxon $p < 0.001$ on every dataset.}}{10}{table.caption.5}\protected@file@percent }
+\newlabel{tab:main-mae}{{3}{10}{Main MAE results on the four standard traffic benchmarks at 80\,\% sparsity, 15 evaluations per dataset (3 training seeds $\times $ 5 eval-mask seeds). ``Best baseline'' is the strongest individual baseline per dataset. Holm-adjusted Wilcoxon $p < 0.001$ on every dataset}{table.caption.5}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Per-baseline MAE on PEMS08 at 80\,\% sparsity. Eighteen baselines plus \textsc  {Marst}\xspace  , colour-coded by model family. The dashed line at 38.67 is the Historical Average floor; the dotted line at 20.54 is \textsc  {locf}\xspace  . \textsc  {Marst}\xspace  sits at the bottom with a 58.8\,\% MAE reduction over HA.}}{11}{figure.caption.6}\protected@file@percent }
+\newlabel{fig:benchmark}{{3}{11}{Per-baseline MAE on PEMS08 at 80\,\% sparsity. Eighteen baselines plus \MARST , colour-coded by model family. The dashed line at 38.67 is the Historical Average floor; the dotted line at 20.54 is \LOCF . \MARST sits at the bottom with a 58.8\,\% MAE reduction over HA}{figure.caption.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Full cross-dataset MAE comparison at 80\,\% sparsity, sorted by mean rank across datasets. Bold = best per column.}}{11}{table.caption.7}\protected@file@percent }
+\newlabel{tab:cross-dataset}{{4}{11}{Full cross-dataset MAE comparison at 80\,\% sparsity, sorted by mean rank across datasets. Bold = best per column}{table.caption.7}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Per-baseline percentage MAE reduction by \textsc  {Marst}\xspace  on PEMS08, sorted by margin. The smallest gap (17.1\,\% over BRITS) is well outside the noise envelope.}}{12}{figure.caption.8}\protected@file@percent }
+\newlabel{fig:vsall}{{4}{12}{Per-baseline percentage MAE reduction by \MARST on PEMS08, sorted by margin. The smallest gap (17.1\,\% over BRITS) is well outside the noise envelope}{figure.caption.8}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Cumulative absolute-error CDF (left) and hit-rate curves (right) on PEMS08. \textsc  {Marst}\xspace  (red) lies strictly above every other curve in both panels --- a higher fraction of held-out cells are imputed within any given tolerance.}}{12}{figure.caption.9}\protected@file@percent }
+\newlabel{fig:cdf}{{5}{12}{Cumulative absolute-error CDF (left) and hit-rate curves (right) on PEMS08. \MARST (red) lies strictly above every other curve in both panels --- a higher fraction of held-out cells are imputed within any given tolerance}{figure.caption.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}JamMAE: error in the operationally important regime}{13}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:results-jam}{{5.2}{13}{JamMAE: error in the operationally important regime}{subsection.5.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces JamMAE --- error in the congested regime. Slowest 20\,\% of true values for speed datasets, busiest 33\,\% for flow datasets. \textsc  {Marst}\xspace  is the JamMAE leader on every dataset.}}{13}{table.caption.10}\protected@file@percent }
+\newlabel{tab:jammae}{{5}{13}{JamMAE --- error in the congested regime. Slowest 20\,\% of true values for speed datasets, busiest 33\,\% for flow datasets. \MARST is the JamMAE leader on every dataset}{table.caption.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Sparsity robustness}{13}{subsection.5.3}\protected@file@percent }
+\newlabel{sec:results-sparsity}{{5.3}{13}{Sparsity robustness}{subsection.5.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Anchor ablation}{13}{subsection.5.4}\protected@file@percent }
+\newlabel{sec:results-ablate}{{5.4}{13}{Anchor ablation}{subsection.5.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Overall MAE versus JamMAE on PEMS08. Lower-left is best. \textsc  {Marst}\xspace  is the most lower-left point and is distinctly separated from the BRITS / iTransformer / STID cluster. The same lower-left ordering holds on the other three datasets (see Table~\ref {tab:jammae-full}).}}{14}{figure.caption.11}\protected@file@percent }
+\newlabel{fig:maevsjam}{{6}{14}{Overall MAE versus JamMAE on PEMS08. Lower-left is best. \MARST is the most lower-left point and is distinctly separated from the BRITS / iTransformer / STID cluster. The same lower-left ordering holds on the other three datasets (see Table~\ref {tab:jammae-full})}{figure.caption.11}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Per-baseline JamMAE on all four datasets at 80\,\% sparsity (slowest 20\,\% of true values for speed datasets; busiest 33\,\% for flow datasets). Bold = best per column. \textsc  {Marst}\xspace  is the JamMAE leader on every dataset, mirroring its overall-MAE ranking.}}{14}{table.caption.12}\protected@file@percent }
+\newlabel{tab:jammae-full}{{6}{14}{Per-baseline JamMAE on all four datasets at 80\,\% sparsity (slowest 20\,\% of true values for speed datasets; busiest 33\,\% for flow datasets). Bold = best per column. \MARST is the JamMAE leader on every dataset, mirroring its overall-MAE ranking}{table.caption.12}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Sparsity sweep. \textsc  {Marst}\xspace  trained at 80\,\% sparsity is evaluated at three test sparsities without retraining. \textsc  {locf}\xspace  and \textsc  {ha}\xspace  are recomputed at each test level. \textsc  {Marst}\xspace  is the lowest-MAE method at every (dataset, sparsity) pair.}}{15}{table.caption.13}\protected@file@percent }
+\newlabel{tab:sparsity}{{7}{15}{Sparsity sweep. \MARST trained at 80\,\% sparsity is evaluated at three test sparsities without retraining. \LOCF and \HA are recomputed at each test level. \MARST is the lowest-MAE method at every (dataset, sparsity) pair}{table.caption.13}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Sparsity sensitivity on PEMS08. The \textsc  {locf}\xspace  curve elbows sharply between 80\,\% and 95\,\%; \textsc  {ha}\xspace  is a flat reference line at 38.67; \textsc  {Marst}\xspace  has the lowest curve at every sparsity level, and its curve has the gentlest slope between 80\,\% and 95\,\%.}}{15}{figure.caption.14}\protected@file@percent }
+\newlabel{fig:sparsity-pems08}{{7}{15}{Sparsity sensitivity on PEMS08. The \LOCF curve elbows sharply between 80\,\% and 95\,\%; \HA is a flat reference line at 38.67; \MARST has the lowest curve at every sparsity level, and its curve has the gentlest slope between 80\,\% and 95\,\%}{figure.caption.14}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Anchor ablation at 400-epoch budget, single training seed. The first row is the full \textsc  {Marst}\xspace  with all three anchors and the load-balanced gate. Subsequent rows report the change in MAE relative to Full when the indicated anchor is removed or when only one anchor is retained. Negative $\Delta $ = variant beats Full at this budget.}}{15}{table.caption.15}\protected@file@percent }
+\newlabel{tab:ablation}{{8}{15}{Anchor ablation at 400-epoch budget, single training seed. The first row is the full \MARST with all three anchors and the load-balanced gate. Subsequent rows report the change in MAE relative to Full when the indicated anchor is removed or when only one anchor is retained. Negative $\Delta $ = variant beats Full at this budget}{table.caption.15}{}}
+\newlabel{fig:ablation-bay}{{8a}{16}{PEMS-BAY (speed)}{figure.caption.16}{}}
+\newlabel{sub@fig:ablation-bay}{{a}{16}{PEMS-BAY (speed)}{figure.caption.16}{}}
+\newlabel{fig:ablation-la}{{8b}{16}{METR-LA (speed)}{figure.caption.16}{}}
+\newlabel{sub@fig:ablation-la}{{b}{16}{METR-LA (speed)}{figure.caption.16}{}}
+\newlabel{fig:ablation-04}{{8c}{16}{PEMS04 (flow)}{figure.caption.16}{}}
+\newlabel{sub@fig:ablation-04}{{c}{16}{PEMS04 (flow)}{figure.caption.16}{}}
+\newlabel{fig:ablation-08}{{8d}{16}{PEMS08 (flow)}{figure.caption.16}{}}
+\newlabel{sub@fig:ablation-08}{{d}{16}{PEMS08 (flow)}{figure.caption.16}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Anchor ablation across all four datasets at the 400-epoch budget. Each subplot shows the full \textsc  {Marst}\xspace  (red, top bar) against six variants (blue). Flow datasets (c, d) clearly want all three anchors --- every leave-one-out is worse and every single-anchor variant is dramatically worse. Speed datasets (a, b) are close calls at this compute budget.}}{16}{figure.caption.16}\protected@file@percent }
+\newlabel{fig:ablation}{{8}{16}{Anchor ablation across all four datasets at the 400-epoch budget. Each subplot shows the full \MARST (red, top bar) against six variants (blue). Flow datasets (c, d) clearly want all three anchors --- every leave-one-out is worse and every single-anchor variant is dramatically worse. Speed datasets (a, b) are close calls at this compute budget}{figure.caption.16}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Soft-LOCF decay initialisation sensitivity (Q2)}{16}{subsection.5.5}\protected@file@percent }
+\newlabel{sec:results-decay}{{5.5}{16}{Soft-LOCF decay initialisation sensitivity (Q2)}{subsection.5.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Soft-\textsc  {locf}\xspace  decay initialisation sensitivity at 400-epoch budget. Each cell is the 3-seed mean MAE. $d$ is the \emph  {initialisation}; the per-sensor decays are learnable from there (see the convergence behaviour in the surrounding prose).}}{17}{table.caption.17}\protected@file@percent }
+\newlabel{tab:decay}{{9}{17}{Soft-\LOCF decay initialisation sensitivity at 400-epoch budget. Each cell is the 3-seed mean MAE. $d$ is the \emph {initialisation}; the per-sensor decays are learnable from there (see the convergence behaviour in the surrounding prose)}{table.caption.17}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}Sparsity curriculum (Q6)}{17}{subsection.5.6}\protected@file@percent }
+\newlabel{sec:results-curr}{{5.6}{17}{Sparsity curriculum (Q6)}{subsection.5.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Curriculum versus fixed-sparsity training. The 60\,\%~$\rightarrow $~80\,\% curriculum strictly improves MAE on every dataset; the biggest gain is on PEMS04 ($+1.92$ veh/5min without it).}}{17}{table.caption.18}\protected@file@percent }
+\newlabel{tab:curriculum}{{10}{17}{Curriculum versus fixed-sparsity training. The 60\,\%~$\rightarrow $~80\,\% curriculum strictly improves MAE on every dataset; the biggest gain is on PEMS04 ($+1.92$ veh/5min without it)}{table.caption.18}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.7}Learned anchor mixture under load balancing}{17}{subsection.5.7}\protected@file@percent }
+\newlabel{sec:results-mix}{{5.7}{17}{Learned anchor mixture under load balancing}{subsection.5.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Learned anchor mixture $\bm  {\pi }$, end of training, averaged over the evaluation window. Range shown across three training seeds. With load balancing at $\lambda = 0.02$ the gate retains all three anchors at approximately uniform mass on every dataset.}}{17}{table.caption.19}\protected@file@percent }
+\newlabel{tab:mix}{{11}{17}{Learned anchor mixture $\bm {\pi }$, end of training, averaged over the evaluation window. Range shown across three training seeds. With load balancing at $\lambda = 0.02$ the gate retains all three anchors at approximately uniform mass on every dataset}{table.caption.19}{}}
+\newlabel{fig:mix-bar}{{9a}{18}{Mean anchor weights (PEMS08)}{figure.caption.20}{}}
+\newlabel{sub@fig:mix-bar}{{a}{18}{Mean anchor weights (PEMS08)}{figure.caption.20}{}}
+\newlabel{fig:mix-spatial}{{9b}{18}{Per-sensor MAE (left) and dominant anchor (right)}{figure.caption.20}{}}
+\newlabel{sub@fig:mix-spatial}{{b}{18}{Per-sensor MAE (left) and dominant anchor (right)}{figure.caption.20}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Interpretability views of the learned anchor mixture on PEMS08. Despite the near-uniform mean mix produced by load balancing, per-sensor gating remains informative: \textsc  {knn}\xspace  dominates along the linear corridor extremes where the local neighbourhood is small; the dense central cluster is mixed.}}{18}{figure.caption.20}\protected@file@percent }
+\newlabel{fig:mix}{{9}{18}{Interpretability views of the learned anchor mixture on PEMS08. Despite the near-uniform mean mix produced by load balancing, per-sensor gating remains informative: \KNN dominates along the linear corridor extremes where the local neighbourhood is small; the dense central cluster is mixed}{figure.caption.20}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.8}Missing-pattern robustness}{18}{subsection.5.8}\protected@file@percent }
+\newlabel{sec:results-pattern}{{5.8}{18}{Missing-pattern robustness}{subsection.5.8}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Qualitative imputation on three PEMS08 sensors. Ground truth (green), \textsc  {Marst}\xspace  imputation (red), observed input (black dots). Sensor 4 has the easiest fill; sensor 9 the lowest residual error; sensor 52 shows where the model struggles --- sharp peak transitions where the recency anchor is no longer reliable.}}{19}{figure.caption.21}\protected@file@percent }
+\newlabel{fig:qualitative}{{10}{19}{Qualitative imputation on three PEMS08 sensors. Ground truth (green), \MARST imputation (red), observed input (black dots). Sensor 4 has the easiest fill; sensor 9 the lowest residual error; sensor 52 shows where the model struggles --- sharp peak transitions where the recency anchor is no longer reliable}{figure.caption.21}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Missing-pattern MAE on the four datasets at 80\,\% sparsity. \textsc  {Marst}\xspace  is the lowest-MAE method under point and block patterns on every dataset. Under whole-sensor outage, \textsc  {knn}\xspace  is competitive with or beats \textsc  {Marst}\xspace  because \textsc  {knn}\xspace  is the only method whose prediction does not depend on the absent sensor's own history. \textsc  {locf}\xspace  collapses catastrophically: with no observation at all in the evaluation window, the model degrades to a global-mean baseline.}}{19}{table.caption.22}\protected@file@percent }
+\newlabel{tab:pattern}{{12}{19}{Missing-pattern MAE on the four datasets at 80\,\% sparsity. \MARST is the lowest-MAE method under point and block patterns on every dataset. Under whole-sensor outage, \KNN is competitive with or beats \MARST because \KNN is the only method whose prediction does not depend on the absent sensor's own history. \LOCF collapses catastrophically: with no observation at all in the evaluation window, the model degrades to a global-mean baseline}{table.caption.22}{}}
+\newlabel{fig:pattern-bay}{{11a}{20}{PEMS-BAY (speed)}{figure.caption.23}{}}
+\newlabel{sub@fig:pattern-bay}{{a}{20}{PEMS-BAY (speed)}{figure.caption.23}{}}
+\newlabel{fig:pattern-la}{{11b}{20}{METR-LA (speed)}{figure.caption.23}{}}
+\newlabel{sub@fig:pattern-la}{{b}{20}{METR-LA (speed)}{figure.caption.23}{}}
+\newlabel{fig:pattern-04}{{11c}{20}{PEMS04 (flow)}{figure.caption.23}{}}
+\newlabel{sub@fig:pattern-04}{{c}{20}{PEMS04 (flow)}{figure.caption.23}{}}
+\newlabel{fig:pattern-08}{{11d}{20}{PEMS08 (flow)}{figure.caption.23}{}}
+\newlabel{sub@fig:pattern-08}{{d}{20}{PEMS08 (flow)}{figure.caption.23}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Missing-pattern MAE across all four datasets. Three patterns: point (i.i.d.\ per cell), block (contiguous time blocks of randomly chosen sensors), and sensor (whole-sensor outages). \textsc  {Marst}\xspace  has the lowest MAE under point and block on every dataset; under sensor outage \textsc  {knn}\xspace  is competitive because it is the only method whose prediction does not depend on the absent sensor's own history.}}{20}{figure.caption.23}\protected@file@percent }
+\newlabel{fig:pattern}{{11}{20}{Missing-pattern MAE across all four datasets. Three patterns: point (i.i.d.\ per cell), block (contiguous time blocks of randomly chosen sensors), and sensor (whole-sensor outages). \MARST has the lowest MAE under point and block on every dataset; under sensor outage \KNN is competitive because it is the only method whose prediction does not depend on the absent sensor's own history}{figure.caption.23}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.9}Leak audit}{20}{subsection.5.9}\protected@file@percent }
+\newlabel{sec:results-leak}{{5.9}{20}{Leak audit}{subsection.5.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.10}Parameter cost}{20}{subsection.5.10}\protected@file@percent }
+\newlabel{sec:results-params}{{5.10}{20}{Parameter cost}{subsection.5.10}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces Parameter counts. \textsc  {Marst}\xspace  is $\sim $17$\times $ larger than iTransformer, the strongest baseline on three of four datasets. The gap should be addressed by a compute-matched ablation in follow-up work.}}{21}{table.caption.24}\protected@file@percent }
+\newlabel{tab:params}{{13}{21}{Parameter counts. \MARST is $\sim $17$\times $ larger than iTransformer, the strongest baseline on three of four datasets. The gap should be addressed by a compute-matched ablation in follow-up work}{table.caption.24}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion}{21}{section.6}\protected@file@percent }
+\newlabel{sec:discussion}{{6}{21}{Discussion}{section.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{The headline win is real, load-bearing, and deployable.}{21}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{The load-balancing aux loss is doing work --- and the absence of expert collapse is itself a finding.}{21}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Per-sensor learnable decay was a negative finding.}{22}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{The KNN anchor is interesting as a backstop.}{22}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Curriculum is small but free.}{22}{section.6}\protected@file@percent }
+\newlabel{sec:limitations}{{6}{22}{}{section.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{23}{section.7}\protected@file@percent }
+\newlabel{sec:conclusion}{{7}{23}{Conclusion}{section.7}{}}
+\newlabel{sec:code}{{7}{23}{}{section.7}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Supplementary Figures}{24}{appendix.A}\protected@file@percent }
+\newlabel{app:figures}{{A}{24}{Supplementary Figures}{appendix.A}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces Per-seed stability strip plot on PEMS08. \textsc  {Marst}\xspace  (left-most) shows tight clustering across three training seeds and five eval-mask seeds; its standard deviation of 0.107 veh/5min is small relative to the comparable transformer baselines on this dataset (BRITS 0.22, iTransformer 0.37, SAITS 3.01). This information is already conveyed by the $\pm $ values in Table~\ref {tab:main-mae}; the strip plot visualises the per-model dispersion.}}{24}{figure.caption.25}\protected@file@percent }
+\newlabel{fig:stability}{{12}{24}{Per-seed stability strip plot on PEMS08. \MARST (left-most) shows tight clustering across three training seeds and five eval-mask seeds; its standard deviation of 0.107 veh/5min is small relative to the comparable transformer baselines on this dataset (BRITS 0.22, iTransformer 0.37, SAITS 3.01). This information is already conveyed by the $\pm $ values in Table~\ref {tab:main-mae}; the strip plot visualises the per-model dispersion}{figure.caption.25}{}}
+\newlabel{fig:rmse}{{13a}{24}{RMSE versus MAE on PEMS08}{figure.caption.26}{}}
+\newlabel{sub@fig:rmse}{{a}{24}{RMSE versus MAE on PEMS08}{figure.caption.26}{}}
+\newlabel{fig:family}{{13b}{24}{Mean MAE by model family on PEMS08}{figure.caption.26}{}}
+\newlabel{sub@fig:family}{{b}{24}{Mean MAE by model family on PEMS08}{figure.caption.26}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces Aggregate views on PEMS08. (a) \textsc  {Marst}\xspace  is the lower-left-most point and sits below the $y = x$ diagonal, indicating tail errors stay close to mean errors --- useful for downstream control decisions. (b) Family-mean MAE: the Ours family is lowest; the next-best family is Non-parametric (KNN), then RNN.}}{24}{figure.caption.26}\protected@file@percent }
+\newlabel{fig:agg}{{13}{24}{Aggregate views on PEMS08. (a) \MARST is the lower-left-most point and sits below the $y = x$ diagonal, indicating tail errors stay close to mean errors --- useful for downstream control decisions. (b) Family-mean MAE: the Ours family is lowest; the next-best family is Non-parametric (KNN), then RNN}{figure.caption.26}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces Extended metrics heatmap on PEMS08. Per-model performance across MAE, JamMAE, RMSE, MedAE, MAPE\,\%, $R^2$, Pearson, MBE, Hit@10, Hit@21. Green = best per column. \textsc  {Marst}\xspace  owns the green cell in every column except MBE.}}{25}{figure.caption.27}\protected@file@percent }
+\newlabel{fig:heatmap}{{14}{25}{Extended metrics heatmap on PEMS08. Per-model performance across MAE, JamMAE, RMSE, MedAE, MAPE\,\%, $R^2$, Pearson, MBE, Hit@10, Hit@21. Green = best per column. \MARST owns the green cell in every column except MBE}{figure.caption.27}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {B}Hyperparameter and Implementation Details}{25}{appendix.B}\protected@file@percent }
+\newlabel{app:hparams}{{B}{25}{Hyperparameter and Implementation Details}{appendix.B}{}}
+\@writefile{toc}{\contentsline {paragraph}{Architecture.}{25}{appendix.B}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Training.}{25}{appendix.B}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Anti-leak.}{25}{appendix.B}\protected@file@percent }
+\bibdata{references}
+\bibcite{cao2018brits}{{1}{2018}{{Cao et~al.}}{{Cao, Wang, Li, Zhou, Li, and Li}}}
+\bibcite{cheng2016wide}{{2}{2016}{{Cheng et~al.}}{{Cheng, Koc, Harmsen, Shaked, Chandra, Aradhye, Anderson, Corrado, Chai, Ispir, Anil, Haque, Hong, Jain, Liu, and Shah}}}
+\bibcite{cheng2024faststi}{{3}{2024}{{Cheng et~al.}}{{Cheng, Osman, Qu, and Ballan}}}
+\bibcite{cini2022grin}{{4}{2022}{{Cini et~al.}}{{Cini, Marisca, and Alippi}}}
+\bibcite{du2023saits}{{5}{2023}{{Du et~al.}}{{Du, C{\^o}t{\'e}, and Liu}}}
+\bibcite{fang2024bayotide}{{6}{2024}{{Fang et~al.}}{{Fang, Narayanan, Pan, Li, Liu, and Zhe}}}
+\bibcite{fedus2021switch}{{7}{2022}{{Fedus et~al.}}{{Fedus, Zoph, and Shazeer}}}
+\bibcite{li2018dcrnn}{{8}{2018}{{Li et~al.}}{{Li, Yu, Shahabi, and Liu}}}
+\bibcite{liu2023pristi}{{9}{2023}{{Liu et~al.}}{{Liu, Huang, Feng, Sun, Du, and Fu}}}
+\bibcite{liu2024itransformer}{{10}{2024}{{Liu et~al.}}{{Liu, Hu, Zhang, Wu, Wang, Ma, and Long}}}
+\bibcite{nie2024imputeformer}{{11}{2024}{{Nie et~al.}}{{Nie, Qin, Mei, and Sun}}}
+\@writefile{toc}{\contentsline {paragraph}{Reproducibility.}{26}{appendix.B}\protected@file@percent }
+\bibcite{nie2023patchtst}{{12}{2023}{{Nie et~al.}}{{Nie, Nguyen, Sinthong, and Kalagnanam}}}
+\bibcite{oreshkin2020nbeats}{{13}{2020}{{Oreshkin et~al.}}{{Oreshkin, Carpov, Chapados, and Bengio}}}
+\bibcite{shao2022stid}{{14}{2022}{{Shao et~al.}}{{Shao, Zhang, Wang, Wei, and Xu}}}
+\bibcite{shazeer2017moe}{{15}{2017}{{Shazeer et~al.}}{{Shazeer, Mirhoseini, Maziarz, Davis, Le, Hinton, and Dean}}}
+\bibcite{smyl2020hybrid}{{16}{2020}{{Smyl}}{{}}}
+\bibcite{wang2025stamimputer}{{17}{2025}{{Wang et~al.}}{{Wang, Peng, and Wang}}}
+\bibcite{wu2019gwn}{{18}{2019}{{Wu et~al.}}{{Wu, Pan, Long, Jiang, and Zhang}}}
+\bibcite{yang2025streamingtensor}{{19}{2025}{{Yang et~al.}}{{Yang, Chi, Gao, Wang, and Wang}}}
+\bibcite{zeng2023dlinear}{{20}{2023}{{Zeng et~al.}}{{Zeng, Chen, Zhang, and Xu}}}
+\gdef \@abspage@last{27}
